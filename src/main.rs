@@ -6,5 +6,6 @@ async fn main() {
     let login = warp::path("login").map(|| "Hello from login");
     let logout = warp::path("logout").map(|| "Hello from logout");
     let routes = register.or(login).or(logout);
+    let routes = warp::path("api").and(routes);
     warp::serve(routes).run(([127, 0, 0, 1], 3030)).await;
 }
